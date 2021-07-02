@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html" 
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        
+        
+    </h:head>
+    <h:body>
+        
+         <ui:composition template="./../resources/templateAltaEdit.xhtml" >
+
+            <ui:define name="title">
+               <title>Crear Aviones</title>
+            </ui:define>
+
+            <ui:define name="titleHeader">
+                <h2>Crear Nuevo Avión</h2>
+            </ui:define>
+
+            <ui:define name="center" >
+            
+            <p:outputLabel value="Nùmero de avión: "/>
+            <p:inputText value="#{avionesController.aviones.numDeAvion}" required="true" requiredMessage="El nùmero de vuelo es requerido." validator="numerosValidator" maxlength="20" />
+            <br/>
+            <p:outputLabel value="Aerolinea: " />
+            <p:inputText value="#{avionesController.aviones.aerolinea}" required="true" requiredMessage="La aerolinea es requerida." validator="palabrasValidator" maxlength="35"/>
+            <br/>
+            <p:outputLabel value="Capacidad de pasajeros: "/>
+            <p:inputText value="#{avionesController.aviones.capacidadDePasajeros}" required="true" requiredMessage="La capacidad de pasajeros es requerido." validator="numerosValidator"/>
+            <br/>
+            <p:outputLabel value="Modelo: " />
+            <p:inputText value="#{avionesController.aviones.modelo}" required="true" requiredMessage="El modelo es requerido." validator ="codigoValidator" maxlength="25" />
+            <br/>
+          
+            </ui:define>
+
+
+
+
+
+            <ui:define name="button">
+            
+            <p:growl id="message" showDetail="true"/>
+            
+            <p:commandButton value=" Agregar " action="#{avionesController.save()}" ajax="false" class="btn" />
+       </ui:define>
+            <ui:define name="back">
+            <p:commandButton  value="Regresar" action="#{avionesController.cleanCancel()}" ajax="false" class="btn" />
+         </ui:define>
+
+        </ui:composition>
+    </h:body>
+</html>
+

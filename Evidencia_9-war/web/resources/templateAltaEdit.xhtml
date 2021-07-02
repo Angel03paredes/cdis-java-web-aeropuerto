@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <ui:insert name="title" />
+       
+        <h:outputStylesheet name="/css/style.css"/>
+    </h:head>
+    <h:body>
+        <div class="header" >
+            <ui:include src="header.xhtml"/>
+            <div class="title" >
+                <ui:insert name="titleHeader"/>
+            </div>
+        </div>
+        
+        <h:form>
+        <div class="container" >
+            <div class="left" >
+                <ui:insert name="left" />
+            </div>
+            <div class="center" >
+                <ui:insert name="center" />
+            </div>
+            <div class="right" >
+                <ui:insert name="right" />
+            </div>
+            
+        </div>
+        
+        <div class="contBtn">
+            <ui:insert name="button" />
+            </div >
+        </h:form>
+        
+        <h:form>
+            <div class="contBtn">
+                
+                    <ui:insert name="back" />
+               
+            </div>
+             
+        </h:form>
+       
+    
+    
+        
+        <div class="footer" ></div>
+    </h:body>
+</html>
+

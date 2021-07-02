@@ -1,0 +1,25 @@
+<div  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui" class="navbar"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+     <h:form >
+        
+         <h:commandLink action="/home.xhtml" value="CDIS" class="logo" />
+     </h:form>
+    <h:form class="contLinks">
+        <c:if test="#{usuariosController.showAuth() eq true}" >
+        <h:commandLink action="/Vuelos/vuelosList.xhtml" value="Vuelos" class="itemBar"/>
+        <h:commandLink action="/Aviones/avionesList.xhtml" value="Aviones" class="itemBar" />
+        <h:commandLink action="/Paises/paisesList.xhtml" value="Paises" class="itemBar" />
+        <h:commandLink action="/Estados/estadosList.xhtml" value="Estados" class="itemBar"/>
+        <h:commandLink action="/Ciudades/ciudadesList.xhtml" value="Ciudades" class="itemBar" />
+        <h:commandLink action="/Usuarios/usuariosList.xhtml" value="Usuarios" class="itemBar" />
+        
+        <h:commandLink action="#{usuariosController.logOut()}" value="Cerrar Sesión" class="btn-logOut" />
+        </c:if>
+    </h:form>
+
+</div>
+

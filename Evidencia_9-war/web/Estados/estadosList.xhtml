@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+
+
+    </h:head>
+    <h:body>
+        <ui:composition template="./../resources/templateList.xhtml" >
+
+            <ui:define name="title">
+                #{estadosController.clean()}
+                <title>Estados</title>
+            </ui:define>
+
+            <ui:define name="titleHeader">
+                <h2>Lista de Estados</h2>
+            </ui:define>
+
+            <ui:define name="button">
+                <p:commandButton action="/home.xhtml" value="Inicio" ajax="false" class="btn"></p:commandButton>
+                <c:if test="#{usuariosController.showBtn() eq true  }">
+                <p:commandButton action="estadosAlta.xhtml" value="Agregar Nuevo" ajax="false" class="btn"></p:commandButton>
+                </c:if>
+            </ui:define>
+
+            <ui:define name="table">
+                <p:dataTable value="#{estadosController.findAllNamed()}" var="element" >
+                    <p:column>
+                        <f:facet name="header">
+                            Nombre
+                        </f:facet>
+                        #{element.nombre}
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            Pais
+                        </f:facet>
+                        #{element.paises.nombre}
+                    </p:column>
+                    <c:if test="#{usuariosController.showBtn() eq true  }">
+                    <p:column>
+                        <f:facet name="header">
+
+                        </f:facet>
+                        <p:commandButton value="Editar" ajax="false" action="#{estadosController.prepareEdit(element)}"></p:commandButton>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+
+                        </f:facet>
+                        <p:growl id="message" showDetail="true"  />
+                        <p:commandButton value="Eliminar"   update="message" action="#{estadosController.confirmRemove(element)}" >
+                            <p:confirm header="Confirmaciòn" message=" ¿Estas seguro en eliminar al estado #{element.nombre} ?" icon="ui-icon-alert"/>     
+                        </p:commandButton>
+                    </p:column>
+                        </c:if>
+                </p:dataTable>
+
+
+                <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" responsive="true" width="350" >
+                    <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no "/>
+                    <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes ui-button-flat"  />
+                </p:confirmDialog> 
+
+            </ui:define>
+
+
+        </ui:composition>
+    </h:body>
+</html>
+

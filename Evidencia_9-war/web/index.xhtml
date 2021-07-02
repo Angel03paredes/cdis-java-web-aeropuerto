@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <h:outputStylesheet name="/css/style.css"/>
+
+        <title>Iniciar Sesión</title>
+    </h:head>
+
+
+
+    <h:body>
+
+        <ui:include src="/resources/header.xhtml"/>
+            
+        
+    
+        <div class="contLogIn">
+            <div class="logInTitle">
+                Iniciar Sesión
+            </div>
+            
+            <h:form>
+                <p:inputText placeholder="Correo" value="#{usuariosController.email}" maxlength="60" />
+                <p:password placeholder="Contraseña" value="#{usuariosController.contra}" maxlength="30"/>
+                <hr/>
+                <div class="contBtn">
+                <p:commandButton  value="Ingresar" action="#{usuariosController.iniciarSesion()}" ajax="false" class="btn" />
+                </div>
+                 <p:growl id="message" showDetail="true"  />
+            </h:form>
+            
+        </div>
+
+        <div class="footer" ></div>
+    </h:body>
+</html>
+

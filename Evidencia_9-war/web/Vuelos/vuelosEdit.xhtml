@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+
+
+    </h:head>
+    <h:body>
+        <ui:composition template="./../resources/templateAltaEdit.xhtml" >
+
+            <ui:define name="title">
+                <title> Editar Vuelo</title>
+            </ui:define>
+
+            <ui:define name="titleHeader">
+                <h2>Editar Vuelo</h2>
+            </ui:define>
+            <ui:define name="left" >
+                <p:outputLabel value="Nùmero de vuelo:"/>
+                <p:inputText value="#{vuelosController.vuelos.numDeVuelo}" required="true" requiredMessage="Nùmero de vuelo es un campo requerido" validator="numerosValidator" maxlength="20" disabled="true" />
+
+                <p:outputLabel value="Nùmero de aviòn: "/>
+                <p:selectOneMenu value="#{vuelosController.vuelos.aviones}" rendered="true" requiredMessage="El Nùmero de avion es un campo requerido" required="true"  >
+                    <f:selectItem itemLabel="Seleccione un aviòn" noSelectionOption="true" itemValue="0" />
+                    <f:selectItems value="#{avionesController.findAllNamed()}" var="element" itemLabel="#{element.aerolinea} - #{element.modelo} - #{element.numDeAvion}"/>
+                </p:selectOneMenu>
+
+                <p:outputLabel value="Nùmero de pasajeros:"/>
+                <p:inputText value="#{vuelosController.vuelos.numDePasajeros}" required="true" requiredMessage="Falta el Nùmero de pasajeros" validator="numerosValidator" />
+
+
+            </ui:define>
+            <ui:define name="center" >
+                <p:outputLabel value="Origen: "/>
+                <p:selectOneMenu value="#{vuelosController.vuelos.origen}" rendered="true"  requiredMessage="Origen es un campo requerido" required="true">
+                    <f:selectItem itemLabel="Seleccione una ciudad" noSelectionOption="true" itemValue="0" />
+                    <f:selectItems value="#{ciudadesController.findAllNamed()}" var="element" itemLabel="#{element.nombre} - #{element.estados.nombre} - #{element.estados.paises.nombre}"/>
+                </p:selectOneMenu>
+                <br/>
+                <p:outputLabel value="Destino:"/>
+                <p:selectOneMenu value="#{vuelosController.vuelos.destino}" rendered="true"  requiredMessage="Destino es un campo requerido" required="true" >
+                    <f:selectItem itemLabel="Seleccione una ciudad" noSelectionOption="true" itemValue="0" />
+                    <f:selectItems value="#{ciudadesController.findAllNamed()}" var="element" itemLabel="#{element.nombre} - #{element.estados.nombre} - #{element.estados.paises.nombre}"/>
+                </p:selectOneMenu>
+                <br/>
+
+                <p:outputLabel value="Fecha de inicio: "/>
+                <p:datePicker  value="#{vuelosController.vuelos.fechaIniVuelo}" locale="es" monthNavigator="true"
+                               pattern="dd/MM/yyyy" required="true" requiredMessage="Falta la fecha de inicio" />
+                <br/>
+            </ui:define>
+            <ui:define name="right" >
+                <p:outputLabel value="Fecha fin: "/>
+                <p:datePicker  value="#{vuelosController.vuelos.fechaFinVuelo}" locale="es" monthNavigator="true"
+                               pattern="dd/MM/yyyy" required="true" requiredMessage="Falta la fecha final"/>
+                <br/>
+                <p:outputLabel value="Hora de inicio"/>
+                <p:datePicker  value="#{vuelosController.vuelos.horaIniVuelo}" required="true" requiredMessage="Falta la hora de inicio" timeOnly="true" pattern="HH:mm" timeZone="GMT-5" />
+                <br/>
+                <p:outputLabel value="Hora fin:  "/>
+                <p:datePicker  value="#{vuelosController.vuelos.horaFinVuelo}" required="true" requiredMessage="Falta la hora final" timeOnly="true" pattern="HH:mm" timeZone="GMT-5" />
+
+                <br/>
+
+            </ui:define>
+
+
+            <ui:define name="button">
+                <p:growl id="message" showDetail="true"/>
+
+                <p:commandButton value="Guardar" action="#{vuelosController.update()}" ajax="false" class="btn" />
+            </ui:define>
+            <ui:define name="back">
+                <p:commandButton value="Cancelar" action="#{vuelosController.cleanCancel()}" ajax="false" class="btn" />
+            </ui:define>
+ </ui:composition>
+    </h:body>
+</html>
+

@@ -1,0 +1,163 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 2 may 2021, 12:51:57
+    Author     : angel
+*/
+
+body{
+    font-family: system-ui;
+    margin: 0px;
+    height: auto;
+    background-color: #d9d9d9;
+}
+
+.container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075);
+    background-color: #FFFFFF;
+    max-width: 90%;
+    margin: 50px auto;
+}
+
+.ui-inputtext,.ui-selectonemenu, .ui-calendar, .ui-password{
+    width: 95% !important;
+    display:block;
+    margin-bottom: 20px !important;
+
+}
+
+.ui-button{
+    display:block;
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+}
+
+.left , .right , .center {
+    width: 33.3%;
+    padding: 20px 40px;
+}
+
+.ui-calendar>input{
+    width: 100%;
+}
+
+.footer{
+    background-color: #353535;
+    width: 100%;
+    margin-top: 30%;
+    height: 100px;
+
+}
+
+.title{
+    width: 90%;
+    margin: 30px auto; 
+}
+
+.navbar{
+    width: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px 40px;
+    background-color: #353535;
+}
+
+.logo{
+    color: #ffffff;
+    font-size: 2em;
+    text-decoration: none;
+    margin: 0.60rem 0px;
+    font-weight: bold;
+}
+
+.btn{
+    width: 200px !important;
+    display: block;
+    margin:0px 10px;
+}
+
+.contBtn{
+    display: flex;
+    align-content: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+
+}
+
+.contLinks{
+    display: flex;
+    align-items: center;
+}
+
+.itemBar{
+    margin: 0px 10px;
+    text-decoration: none;
+    font-size: 1.1rem;
+    color:#FFFFFF;
+    height: 90%;
+    align-items: center;
+    display: flex;
+    transition: all 300ms;
+}
+
+.itemBar:hover{
+    border-bottom: 1px solid #d9d9d9;
+    color: #d9d9d9;
+}
+
+.msg{
+    width: 90%;
+    margin: 20px auto;
+    color: #353535; 
+    font-size: 7rem;
+}
+
+.contLogIn{
+    margin:100px auto;
+    width: 25%;
+    height: auto;
+    background-color: #FFFFFF;
+    box-shadow: 0 .25rem .25rem rgba(0,0,0,.075);
+}
+
+.contLogIn > *{
+    display: block;
+}
+
+.logInTitle{
+    text-align: center;
+    padding: 10px 20px;
+    background-color: #3c6e71;
+    color:#FFFFFF;
+    font-weight: bold;
+}
+
+.contLogIn>form{
+    padding: 20px 10px;
+}
+
+.btn-logOut{
+    margin: 0px 10px;
+    width: auto;
+    padding:4px 8px;
+    text-decoration: none;
+    font-size: 1.1rem;
+    color:#FFFFFF;
+    background-color: #284b63;
+    height: 90%;
+    align-items: center;
+    display: flex;
+    font-weight: bold;
+    margin-left: 20px;
+}
+
+.btn-logOut:hover{
+    background-color: #395C74;
+}

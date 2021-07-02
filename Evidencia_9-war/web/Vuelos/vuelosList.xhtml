@@ -1,0 +1,133 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        
+
+    </h:head>
+    <h:body>
+        <ui:composition template="./../resources/templateList.xhtml" >
+
+            <ui:define name="title">
+                #{vuelosController.clean()}
+                <title> Vuelos</title>
+            </ui:define>
+
+            <ui:define name="titleHeader">
+                <h2>Lista de vuelos</h2>
+            </ui:define>
+
+            <ui:define name="button">
+                <p:commandButton action="/home.xhtml" value="Inicio" ajax="false" class="btn" />
+                <c:if test="#{usuariosController.showBtn() eq true  }">
+                     
+                    <p:commandButton action="vuelosAlta.xhtml" value="Agregar Nuevo" ajax="false" class="btn"/>
+               </c:if>
+            </ui:define>
+
+            <ui:define name="table">
+                <p:dataTable value="#{vuelosController.findAllNamed()}" var="element" >
+                    <p:column>
+                        <f:facet name="header">
+                            Número de vuelo
+                        </f:facet>
+                        #{element.numDeVuelo}
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            Número de Avión
+                        </f:facet>
+                        #{element.aviones.numDeAvion}
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            Origen
+                        </f:facet>
+                        #{element.origen.nombre}
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            Destino
+                        </f:facet>
+                        #{element.destino.nombre}
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            Número de pasajeros
+                        </f:facet>
+                        #{element.numDePasajeros}
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            Fecha inicio de vuelo
+                        </f:facet>
+                        <h:outputText value="#{element.fechaIniVuelo}">
+                            <f:convertDateTime type="date" pattern="dd/MM/yyyy" timeZone="GMT-5"/>
+                        </h:outputText>
+
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            Fecha fin de vuelo
+                        </f:facet>
+                        <h:outputText value="#{element.fechaFinVuelo}">
+                            <f:convertDateTime type="date" pattern="dd/MM/yyyy" timeZone="GMT-5" />
+                        </h:outputText>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            Hora inicio de vuelo
+                        </f:facet>
+                        <h:outputText value="#{element.horaIniVuelo}">
+                            <f:convertDateTime type="time" pattern="hh:mm aa" timeZone="GMT-5"/>
+                        </h:outputText>
+
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            Hora fin de vuelo
+                        </f:facet>
+                        <h:outputText value="#{element.horaFinVuelo}">
+                            <f:convertDateTime type="time" pattern="hh:mm aa" timeZone="GMT-5"/>
+                        </h:outputText>
+                    </p:column>
+                    <c:if test="#{usuariosController.showBtn() eq true  }">
+                    <p:column>
+                        <f:facet name="header">
+
+                        </f:facet>
+                        <p:commandButton value="Editar" action="#{vuelosController.prepareEdit(element)}" ajax="false" ></p:commandButton>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+
+                        </f:facet>
+                        <p:growl id="message" showDetail="true"  />
+                        <p:commandButton value="Eliminar"   update="message" action="#{vuelosController.confirmRemove(element)}" >
+                            <p:confirm header="Confirmaciòn" message=" ¿Estas seguro en eliminar al vuelo #{element.numDeVuelo} ?" icon="ui-icon-alert"/>     
+                        </p:commandButton>
+
+                    </p:column>
+                        </c:if>
+                </p:dataTable>
+
+
+
+                <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" responsive="true" width="350" >
+                    <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no "/>
+                    <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes ui-button-flat"  />
+                </p:confirmDialog> 
+
+            </ui:define>
+
+
+        </ui:composition>
+
+    </h:body>
+</html>
+

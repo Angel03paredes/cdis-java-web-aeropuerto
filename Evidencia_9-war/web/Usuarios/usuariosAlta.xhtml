@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        
+        
+    </h:head>
+    <h:body>
+         <ui:composition template="./../resources/templateAltaEdit.xhtml" >
+        
+            <ui:define name="title">
+                <title>Crear Usuario</title>
+            </ui:define>
+              <ui:define name="titleHeader">
+            <h2>Crear Nuevo Usuario</h2>
+            </ui:define>
+            <ui:define name="center" >
+            <p:outputLabel value="Nombre:"/>
+            <p:inputText value="#{usuariosController.usuarios.nombre}" required="true" requiredMessage="El nombre es un campo requerido." validator="nombresValidator" maxlength="50"/>
+            <br/>
+          
+            <p:outputLabel value="Correo:"/>
+            <p:inputText value="#{usuariosController.usuarios.email}" required="true" requiredMessage="El correo es requerido." validator="correoValidator" maxlength="60" />
+            <br/>
+            <p:outputLabel value="Contraseña:"/>
+            <p:inputText value="#{usuariosController.usuarios.contrasena}" required="true" requiredMessage="La contraseña es requerida." maxlength="30" />
+            <br/>
+            
+            <p:outputLabel value="Perfil:" />
+            <p:selectOneMenu value="#{usuariosController.usuarios.perfil}" rendered="true" requiredMessage="El tipo de perfil es un campo requerido" required="true" >
+                <f:selectItem itemLabel="Seleccione..." noSelectionOption="true" itemValue="0" />
+               <f:selectItem itemLabel="Gerente" itemValue="1" />
+               <f:selectItem itemLabel="Piloto"  itemValue="2" />
+               <f:selectItem itemLabel="Director"  itemValue="3" />
+            </p:selectOneMenu>
+            <br/>
+             </ui:define>
+            <ui:define name="button">
+            
+            <p:growl id="message" showDetail="true"/>
+            <p:commandButton value=" Agregar " update="message" action="#{usuariosController.save()}" ajax="false" class="btn" />
+            </ui:define>
+             <ui:define name="back">
+            <p:commandButton  value="Regresar" action="#{usuariosController.cleanCancel()}" ajax="false" class="btn" />
+            </ui:define>
+         </ui:composition>
+    </h:body>
+</html>
+
+
